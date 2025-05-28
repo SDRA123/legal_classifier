@@ -48,7 +48,7 @@ def classify_chunk(text):
     return predicted_label, conf.item()
 
 def is_corporate_document(file_path):
-    chunks = get_pdf_chunks(file_path)
+    chunks = get_text_chunks(file_path)
     if not chunks:
         return False
 
