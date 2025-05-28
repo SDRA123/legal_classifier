@@ -74,9 +74,9 @@ def handler(job):
             return {"error": "No 'file_path' provided in input."}
 
         if is_corporate_document(file_path):
-            return {"status": "accepted", "message": "Corporate document detected."}
+            return 'True'
         else:
-            return {"status": "rejected", "message": "Not a corporate document."}
+            return 'False'
 
     except Exception as e:
         return {"error": str(e)}
