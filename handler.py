@@ -28,18 +28,14 @@ filename = hf_hub_download(repo_id=REPO_NAME, filename=LABEL_ENCODER_FILE)
 label_encoder = joblib.load(filename)
 
 # --- Helper Functions ---
-def get_pdf_chunks(file_path, chunk_size=CHUNK_SIZE):
-    pdf = fitz.open(file_path)
+def get_text_chunks(text, chunk_size=1000):
     chunks = []
-    text_buffer = ""
-    for page in pdf:
-        text_buffer += page.get_text()
-        if len(text_buffer) > chunk_size:
-            chunks.append(text_buffer)
-            text_buffer = ""
-    if text_buffer:
-        chunks.append(text_buffer)
+    text = text.strip()
+    for i in range(0, len(text), chunk_size):
+        chunk = text[i:i + chunk_size]
+        chunks.append(chunk)
     return chunks
+
 
 def classify_chunk(text):
     inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=512, padding=True).to(device)
