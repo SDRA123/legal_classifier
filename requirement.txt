@@ -1,0 +1,11 @@
+torch
+transformers
+joblib
+PyMuPDF
+huggingface-hub
+runpod
+nltk
+scikit-learn
+openai
+protobuf
+sentencepiece
